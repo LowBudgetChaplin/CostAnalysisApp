@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CostAnalysisApp", "CostAnalysisApp\CostAnalysisApp.csproj", "{06A070CC-4929-4DA3-A0A2-998A18285EA5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CostAnalysis.WinForms", "CostAnalysisApp\CostAnalysis.WinForms.csproj", "{06A070CC-4929-4DA3-A0A2-998A18285EA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CostAnalysis.Data", "CostAnalysis.Data\CostAnalysis.Data.csproj", "{1002B79F-E446-4271-86B3-817FE6EFB668}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CostAnalysis.ExcelAddIn", "CostAnalysis.ExcelAddIn\CostAnalysis.ExcelAddIn.csproj", "{497BEFB5-6468-47F9-B89B-32C842FD941A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{06A070CC-4929-4DA3-A0A2-998A18285EA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06A070CC-4929-4DA3-A0A2-998A18285EA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06A070CC-4929-4DA3-A0A2-998A18285EA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1002B79F-E446-4271-86B3-817FE6EFB668}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1002B79F-E446-4271-86B3-817FE6EFB668}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1002B79F-E446-4271-86B3-817FE6EFB668}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1002B79F-E446-4271-86B3-817FE6EFB668}.Release|Any CPU.Build.0 = Release|Any CPU
+		{497BEFB5-6468-47F9-B89B-32C842FD941A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{497BEFB5-6468-47F9-B89B-32C842FD941A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{497BEFB5-6468-47F9-B89B-32C842FD941A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{497BEFB5-6468-47F9-B89B-32C842FD941A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
