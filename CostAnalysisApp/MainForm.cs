@@ -1,4 +1,5 @@
-﻿using System;
+﻿#pragma warning disable CA1416
+using System;
 using System.IO;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
@@ -16,9 +17,10 @@ namespace CostAnalysisApp
 {
     public partial class MainForm : Form
     {
-        private CostAnalysisContext ctx;
+        private CostAnalysisContext ctx = new();
         private int categoryColIndex;
         const string OtherLabel = "Altele";
+        private readonly BindingSource categoriesSource = new();
 
         public MainForm()
         {
@@ -37,23 +39,18 @@ namespace CostAnalysisApp
         {
             ctx = new CostAnalysisContext();
             ctx.Categories.Load();
-            if (!ctx.Categories.Any())
-            {
-                ctx.Categories.AddRange(new[]
-                {
-                    new CostCategory { Name = "Salarii"      },
-                    new CostCategory { Name = "Materii prime"},
-                    new CostCategory { Name = "Utilitati"    },
-                    new CostCategory { Name = "Marketing"    },
-                    new CostCategory { Name = "Transport"    },
-                    new CostCategory { Name = "Servicii IT"  },
-                    new CostCategory { Name = "Depozitare"   },
-                    new CostCategory { Name = "Taxe"         },
-                    new CostCategory { Name = OtherLabel     }
-                });
-                ctx.SaveChanges();
-                ctx.Categories.Load();
-            }
+            var desired = new[] {
+                "Salarii","Materii prime","Utilitati","Marketing",
+                "Transport","Servicii IT","Depozitare","Taxe","Altele"
+                };
+
+            foreach (var name in desired)
+                if (!ctx.Categories.Any(c => c.Name == name))
+                    ctx.Categories.Add(new CostCategory { Name = name });
+
+            ctx.SaveChanges();
+            ctx.Categories.Load();
+            
 
             ctx.Items.Include(i => i.Category).Load();
 
@@ -70,16 +67,17 @@ namespace CostAnalysisApp
             dgvItems.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Amount",
-                HeaderText = "Suma",
+                HeaderText = "Suma €",
                 DefaultCellStyle = { Format = "F2" },
                 Width = 100
             });
 
+            categoriesSource.DataSource = ctx.Categories.Local.ToBindingList();
             var combo = new DataGridViewComboBoxColumn
             {
                 DataPropertyName = "CategoryId",
                 HeaderText = "Categorie",
-                DataSource = ctx.Categories.Local.ToBindingList(),
+                DataSource = categoriesSource,
                 DisplayMember = "Name",
                 ValueMember = "Id",
                 Width = 150,
@@ -109,12 +107,15 @@ namespace CostAnalysisApp
         {
             try
             {
+                Validate();
+                dgvItems.EndEdit();
+                ctx.ChangeTracker.DetectChanges();
                 ctx.SaveChanges();
                 MessageBox.Show("Detaliile au fost salvate cu succes", "Success", MessageBoxButtons.OK);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Eroare la salvare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.GetBaseException().Message, "Eroare la salvare", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -230,14 +231,46 @@ namespace CostAnalysisApp
 
         private void btnManageCategories_Click(object sender, EventArgs e)
         {
-            using var f = new CategoriesForm(ctx);
+            using var f = new CategoriesForm(new CostAnalysisContext());
             f.ShowDialog();
+            RefreshCategories();
 
             var comboBoxColumn = dgvItems.Columns[categoryColIndex] as DataGridViewComboBoxColumn;
             if (comboBoxColumn != null)
             {
                 comboBoxColumn.DataSource = ctx.Categories.Local.ToBindingList();
             }
+        }
+
+        private void RefreshCategories()
+        {
+            var existingIds = ctx.Categories
+                                 .AsNoTracking()
+                                 .Select(c => c.Id)
+                                 .ToList();
+
+            foreach (var localCat in ctx.Categories.Local.ToList())
+            {
+                if (!existingIds.Contains(localCat.Id))
+                {
+                    ctx.Categories.Local.Remove(localCat);
+                }
+            }
+
+            categoriesSource.ResetBindings(false);
+        }
+
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            using var dash = new DashboardForm();
+            dash.ShowDialog(this);
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            ctx.Dispose();
+            base.OnFormClosing(e);
         }
     }
 }

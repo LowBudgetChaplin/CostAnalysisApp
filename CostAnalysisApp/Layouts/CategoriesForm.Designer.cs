@@ -16,12 +16,13 @@ using CostAnalysis.Data.Models;
             public CategoriesForm(CostAnalysisContext ctx)
             {
                 InitializeComponent();
-                _ctx = ctx;
-
+                _ctx = ctx ?? new CostAnalysisContext();
+                _ctx.Categories.Load();
                 _source = ctx.Categories.Local.ToBindingList();
-                lstCategories.DataSource = _source;
+                var bs = new BindingSource { DataSource = _source };
+                lstCategories.DataSource = bs;
                 lstCategories.DisplayMember = "Name";
-            }
+        }
 
             private void btnDelete_Click(object sender, EventArgs e)
             {
