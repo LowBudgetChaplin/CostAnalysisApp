@@ -10,10 +10,10 @@ namespace CostAnalysis.Data.Models
     public class CostItem
     {
         public int Id { get; set; }
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public string? Description { get; set; }
         public decimal Amount { get; set; }
-        public DateTime DateIncurred { get; set; }
+        public DateTime DateIncurred { get; set; } = DateTime.Now;
         public virtual CostCategory? Category { get; set; }
     }
 }
