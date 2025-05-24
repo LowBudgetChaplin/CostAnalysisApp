@@ -9,17 +9,28 @@ using Word = Microsoft.Office.Interop.Word;
 using CostAnalysis.Data;
 using CostAnalysis.Data.Models;
 using CostAnalysis.WinForms.Controls;
+using Microsoft.VisualBasic;
+using CostAnalysis.WinForms.Layouts;
 
 namespace CostAnalysisApp
 {
     public partial class MainForm : Form
     {
         private CostAnalysisContext ctx;
+        private int categoryColIndex;
+        const string OtherLabel = "Altele";
 
         public MainForm()
         {
             InitializeComponent();
-            dgvItems.DataError += dgvItems_DataError;
+            dgvItems.DataError += (s, e) => e.ThrowException = false;
+            dgvItems.CurrentCellDirtyStateChanged += (s, e) =>
+            {
+                if (dgvItems.IsCurrentCellDirty)
+                    dgvItems.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            };
+            dgvItems.CellValueChanged += dgvItems_CellValueChanged;
+            dgvItems.DataError += (s, e) => e.ThrowException = false;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -34,7 +45,11 @@ namespace CostAnalysisApp
                     new CostCategory { Name = "Materii prime"},
                     new CostCategory { Name = "Utilitati"    },
                     new CostCategory { Name = "Marketing"    },
-                    new CostCategory { Name = "Altele"       }
+                    new CostCategory { Name = "Transport"    },
+                    new CostCategory { Name = "Servicii IT"  },
+                    new CostCategory { Name = "Depozitare"   },
+                    new CostCategory { Name = "Taxe"         },
+                    new CostCategory { Name = OtherLabel     }
                 });
                 ctx.SaveChanges();
                 ctx.Categories.Load();
@@ -60,21 +75,23 @@ namespace CostAnalysisApp
                 Width = 100
             });
 
-            dgvItems.Columns.Add(new DataGridViewComboBoxColumn
+            var combo = new DataGridViewComboBoxColumn
             {
                 DataPropertyName = "CategoryId",
                 HeaderText = "Categorie",
                 DataSource = ctx.Categories.Local.ToBindingList(),
                 DisplayMember = "Name",
                 ValueMember = "Id",
-                Width = 150
-            });
+                Width = 150,
+                FlatStyle = FlatStyle.Flat
+            };
+            categoryColIndex = dgvItems.Columns.Add(combo);
 
             dgvItems.Columns.Add(new DataGridViewCalendarColumn
             {
                 DataPropertyName = "DateIncurred",
                 HeaderText = "Data",
-                Width = 200
+                Width = 230
             });
             dgvItems.DataSource = ctx.Items.Local.ToBindingList();
         }
@@ -171,6 +188,56 @@ namespace CostAnalysisApp
             Marshal.ReleaseComObject(wd);
 
             MessageBox.Show($"Export Word salvat la:\n{path}", "Export finalizat", MessageBoxButtons.OK);
+        }
+
+        private void dgvItems_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex != categoryColIndex || e.RowIndex < 0) return;
+
+            var cell = dgvItems.Rows[e.RowIndex].Cells[categoryColIndex] as DataGridViewComboBoxCell;
+            if (cell?.Value == null) return;
+
+            int selectedId = (int)cell.Value;
+            var alt = ctx.Categories.Local.FirstOrDefault(c => c.Name == OtherLabel);
+            if (alt == null || selectedId != alt.Id) return;
+
+            string input = Interaction.InputBox("Introduceti numele noii categorii:",
+                                                "Categorie personalizata", "");
+            if (string.IsNullOrWhiteSpace(input)) return;
+
+            var newCat = new CostCategory { Name = input.Trim() };
+            ctx.Categories.Add(newCat);
+            ctx.SaveChanges();
+
+            (cell.DataSource as BindingList<CostCategory>)?.ResetBindings();
+            cell.Value = newCat.Id;
+        }
+
+        private void btnDeleteRow_Click(object sender, EventArgs e)
+        {
+            if (dgvItems.CurrentRow == null) return;
+
+            var item = dgvItems.CurrentRow.DataBoundItem as CostItem;
+            if (item == null) return;
+
+            if (MessageBox.Show($"Sterge „{item.Description}” ?", "Confirm",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+
+            ctx.Items.Remove(item);
+            ctx.SaveChanges();
+            dgvItems.Refresh();
+        }
+
+        private void btnManageCategories_Click(object sender, EventArgs e)
+        {
+            using var f = new CategoriesForm(ctx);
+            f.ShowDialog();
+
+            var comboBoxColumn = dgvItems.Columns[categoryColIndex] as DataGridViewComboBoxColumn;
+            if (comboBoxColumn != null)
+            {
+                comboBoxColumn.DataSource = ctx.Categories.Local.ToBindingList();
+            }
         }
     }
 }
