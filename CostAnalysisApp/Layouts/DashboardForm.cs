@@ -1,4 +1,5 @@
-﻿using System;
+﻿#pragma warning disable CA1416
+using System;
 using System.Data.Entity;
 using System.Drawing;
 using System.IO;
@@ -64,32 +65,32 @@ namespace CostAnalysisApp
             chartCosts.DataSource = yearly;
             chartCosts.DataBind();
 
-            var summary = _ctx.Categories.Local
-                .GroupJoin(
-                    _ctx.Items.Local,
-                    cat => cat.Id,
-                    it => it.CategoryId,
-                    (cat, gr) => new
-                    {
-                        Categorie = cat.Name,
-                        Total = gr.Sum(i => i.Amount)
-                    })
-                .Where(x => x.Total > 0)
-                .OrderBy(x => x.Categorie)
-                .ToList();
+            //var summary = _ctx.Categories.Local
+            //    .GroupJoin(
+            //        _ctx.Items.Local,
+            //        cat => cat.Id,
+            //        it => it.CategoryId,
+            //        (cat, gr) => new
+            //        {
+            //            Categorie = cat.Name,
+            //            Total = gr.Sum(i => i.Amount)
+            //        })
+            //    .Where(x => x.Total > 0)
+            //    .OrderBy(x => x.Categorie)
+            //    .ToList();
 
-            dgvSummary.DataSource = summary;
-            dgvSummary.Columns["Categorie"].HeaderText = "Categorie";
-            dgvSummary.Columns["Total"].HeaderText = "Suma totala";
+            //dgvSummary.DataSource = summary;
+            //dgvSummary.Columns["Categorie"].HeaderText = "Categorie";
+            //dgvSummary.Columns["Total"].HeaderText = "Suma totala";
 
-            var filtered = summary
-                .Where(x => x.Total > 0)
-                .ToList();
+            //var filtered = summary
+            //    .Where(x => x.Total > 0)
+            //    .ToList();
 
-            dataGridView1.DataSource = filtered;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.Columns["Categorie"].HeaderText = "Categorie";
-            dataGridView1.Columns["Total"].HeaderText = "Suma totala";
+            //dataGridView1.DataSource = filtered;
+            //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //dataGridView1.Columns["Categorie"].HeaderText = "Categorie";
+            //dataGridView1.Columns["Total"].HeaderText = "Suma totala";
         }
 
         private void btnRefresh_Click(object sender, EventArgs e) => LoadData();

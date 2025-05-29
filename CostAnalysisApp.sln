@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CostAnalysis.WinForms", "Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CostAnalysis.Data", "CostAnalysis.Data\CostAnalysis.Data.csproj", "{1002B79F-E446-4271-86B3-817FE6EFB668}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CostAnalysis.ExcelAddIn", "CostAnalysis.ExcelAddIn\CostAnalysis.ExcelAddIn.csproj", "{497BEFB5-6468-47F9-B89B-32C842FD941A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CostAnalysis.ExcelAddIn", "CostAnalysis.ExcelAddIn\CostAnalysis.ExcelAddIn.csproj", "{ACF7444F-69EE-4C26-BE02-610623898AAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{1002B79F-E446-4271-86B3-817FE6EFB668}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1002B79F-E446-4271-86B3-817FE6EFB668}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1002B79F-E446-4271-86B3-817FE6EFB668}.Release|Any CPU.Build.0 = Release|Any CPU
-		{497BEFB5-6468-47F9-B89B-32C842FD941A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{497BEFB5-6468-47F9-B89B-32C842FD941A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{497BEFB5-6468-47F9-B89B-32C842FD941A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{497BEFB5-6468-47F9-B89B-32C842FD941A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACF7444F-69EE-4C26-BE02-610623898AAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACF7444F-69EE-4C26-BE02-610623898AAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACF7444F-69EE-4C26-BE02-610623898AAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACF7444F-69EE-4C26-BE02-610623898AAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

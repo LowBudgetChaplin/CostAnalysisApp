@@ -11,6 +11,7 @@ namespace CostAnalysis.Data
 
         public DbSet<CostCategory> Categories { get; set; }
         public DbSet<CostItem>     Items      { get; set; }
+        //public DbSet<Budget> Budgets { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

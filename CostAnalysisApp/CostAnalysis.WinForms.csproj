@@ -46,7 +46,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CostAnalysis.Data\CostAnalysis.Data.csproj" />
-    <ProjectReference Include="..\CostAnalysis.ExcelAddIn\CostAnalysis.ExcelAddIn.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Addin\CategoryStatsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

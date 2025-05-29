@@ -20,10 +20,8 @@ namespace CostAnalysisApp
             panelBottom = new Panel();
             btnExportChart = new Button();
             btnRefresh = new Button();
-            dataGridView1 = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)dgvSummary).BeginInit();
             panelBottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // dgvSummary
@@ -33,62 +31,55 @@ namespace CostAnalysisApp
             dgvSummary.Location = new Point(0, 0);
             dgvSummary.Name = "dgvSummary";
             dgvSummary.ReadOnly = true;
-            dgvSummary.Size = new Size(820, 309);
+            dgvSummary.Size = new Size(820, 447);
             dgvSummary.TabIndex = 0;
             dgvSummary.CellContentClick += dgvSummary_CellContentClick;
             // 
             // panelBottom
             // 
-            panelBottom.Controls.Add(dataGridView1);
             panelBottom.Controls.Add(btnExportChart);
             panelBottom.Controls.Add(btnRefresh);
             panelBottom.Dock = DockStyle.Bottom;
-            panelBottom.Location = new Point(0, 309);
+            panelBottom.Location = new Point(0, 447);
             panelBottom.Name = "panelBottom";
             panelBottom.Padding = new Padding(10);
-            panelBottom.Size = new Size(820, 211);
+            panelBottom.Size = new Size(820, 73);
             panelBottom.TabIndex = 1;
             panelBottom.Paint += panelBottom_Paint;
             // 
             // btnExportChart
             // 
-            btnExportChart.Location = new Point(421, 172);
+            btnExportChart.BackColor = SystemColors.MenuHighlight;
+            btnExportChart.Location = new Point(680, 13);
             btnExportChart.Name = "btnExportChart";
-            btnExportChart.Size = new Size(121, 32);
+            btnExportChart.Size = new Size(127, 50);
             btnExportChart.TabIndex = 1;
             btnExportChart.Text = "Export chart";
+            btnExportChart.UseVisualStyleBackColor = false;
             btnExportChart.Click += btnExportChart_Click;
             // 
             // btnRefresh
             // 
-            btnRefresh.Location = new Point(234, 172);
+            btnRefresh.BackColor = SystemColors.Info;
+            btnRefresh.Location = new Point(13, 13);
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(102, 32);
+            btnRefresh.Size = new Size(131, 50);
             btnRefresh.TabIndex = 0;
             btnRefresh.Text = "Refresh";
+            btnRefresh.UseVisualStyleBackColor = false;
             btnRefresh.Click += btnRefresh_Click;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 0);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(820, 166);
-            dataGridView1.TabIndex = 2;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick_1;
             // 
             // DashboardForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(820, 520);
+            ClientSize = new Size(820, 375);
             Controls.Add(dgvSummary);
             Controls.Add(panelBottom);
             Name = "DashboardForm";
             Text = "Dashboard – Cost Analysis";
             ((System.ComponentModel.ISupportInitialize)dgvSummary).EndInit();
             panelBottom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -101,6 +92,5 @@ namespace CostAnalysisApp
             }
             base.Dispose(disposing);
         }
-        private DataGridView dataGridView1;
     }
 }

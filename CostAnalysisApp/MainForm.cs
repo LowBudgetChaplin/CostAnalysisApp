@@ -50,7 +50,7 @@ namespace CostAnalysisApp
 
             ctx.SaveChanges();
             ctx.Categories.Load();
-            
+
 
             ctx.Items.Include(i => i.Category).Load();
 
@@ -272,5 +272,17 @@ namespace CostAnalysisApp
             ctx.Dispose();
             base.OnFormClosing(e);
         }
+
+        private void btnCategoryStats_Click(object sender, EventArgs e)
+        {
+            using var statsForm = new CostAnalysis.WinForms.Layouts.CategoryStatsForm();
+            statsForm.ShowDialog(this);
+        }
+
+        //private void btnBudget_Click(object sender, EventArgs e)
+        //{
+        //    using var form = new CostAnalysis.WinForms.BudgetForm();
+        //    form.ShowDialog(this);
+        //}
     }
 }
