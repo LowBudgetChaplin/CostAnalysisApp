@@ -30,9 +30,10 @@ namespace CostAnalysisApp
             // dgvItems
             // 
             dgvItems.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvItems.BackgroundColor = Color.White;
             dgvItems.Location = new Point(12, 12);
             dgvItems.Name = "dgvItems";
-            dgvItems.Size = new Size(719, 242);
+            dgvItems.Size = new Size(718, 301);
             dgvItems.TabIndex = 0;
             dgvItems.CellContentClick += dgvItems_CellContentClick;
             // 
@@ -41,7 +42,7 @@ namespace CostAnalysisApp
             btnExportExcel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnExportExcel.BackColor = SystemColors.ActiveCaption;
             btnExportExcel.FlatStyle = FlatStyle.Popup;
-            btnExportExcel.Location = new Point(12, 303);
+            btnExportExcel.Location = new Point(11, 328);
             btnExportExcel.Name = "btnExportExcel";
             btnExportExcel.Size = new Size(102, 41);
             btnExportExcel.TabIndex = 1;
@@ -54,7 +55,7 @@ namespace CostAnalysisApp
             btnExportWord.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnExportWord.BackColor = SystemColors.ActiveCaption;
             btnExportWord.FlatStyle = FlatStyle.Popup;
-            btnExportWord.Location = new Point(12, 357);
+            btnExportWord.Location = new Point(11, 382);
             btnExportWord.Name = "btnExportWord";
             btnExportWord.Size = new Size(102, 41);
             btnExportWord.TabIndex = 2;
@@ -66,7 +67,7 @@ namespace CostAnalysisApp
             // 
             btnSaveChanges.BackColor = Color.FromArgb(192, 192, 0);
             btnSaveChanges.FlatStyle = FlatStyle.Popup;
-            btnSaveChanges.Location = new Point(568, 316);
+            btnSaveChanges.Location = new Point(567, 341);
             btnSaveChanges.Name = "btnSaveChanges";
             btnSaveChanges.Size = new Size(140, 58);
             btnSaveChanges.TabIndex = 3;
@@ -79,7 +80,7 @@ namespace CostAnalysisApp
             btnDeleteRow.BackColor = Color.FromArgb(192, 0, 0);
             btnDeleteRow.FlatStyle = FlatStyle.Popup;
             btnDeleteRow.ForeColor = Color.White;
-            btnDeleteRow.Location = new Point(152, 357);
+            btnDeleteRow.Location = new Point(151, 382);
             btnDeleteRow.Name = "btnDeleteRow";
             btnDeleteRow.Size = new Size(102, 41);
             btnDeleteRow.TabIndex = 4;
@@ -92,7 +93,7 @@ namespace CostAnalysisApp
             btnManageCategories.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnManageCategories.BackColor = Color.FromArgb(192, 192, 0);
             btnManageCategories.FlatStyle = FlatStyle.Popup;
-            btnManageCategories.Location = new Point(152, 303);
+            btnManageCategories.Location = new Point(151, 328);
             btnManageCategories.Name = "btnManageCategories";
             btnManageCategories.Size = new Size(102, 41);
             btnManageCategories.TabIndex = 5;
@@ -105,7 +106,7 @@ namespace CostAnalysisApp
             btnDashboard.BackColor = SystemColors.MenuHighlight;
             btnDashboard.FlatStyle = FlatStyle.Popup;
             btnDashboard.ForeColor = Color.White;
-            btnDashboard.Location = new Point(297, 303);
+            btnDashboard.Location = new Point(296, 328);
             btnDashboard.Name = "btnDashboard";
             btnDashboard.Size = new Size(129, 41);
             btnDashboard.TabIndex = 6;
@@ -118,7 +119,7 @@ namespace CostAnalysisApp
             btnCategoryStats.BackColor = SystemColors.MenuHighlight;
             btnCategoryStats.FlatStyle = FlatStyle.Popup;
             btnCategoryStats.ForeColor = Color.White;
-            btnCategoryStats.Location = new Point(297, 357);
+            btnCategoryStats.Location = new Point(296, 382);
             btnCategoryStats.Name = "btnCategoryStats";
             btnCategoryStats.Size = new Size(129, 41);
             btnCategoryStats.TabIndex = 7;
@@ -131,7 +132,7 @@ namespace CostAnalysisApp
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Info;
-            ClientSize = new Size(743, 450);
+            ClientSize = new Size(742, 450);
             Controls.Add(btnCategoryStats);
             Controls.Add(btnDashboard);
             Controls.Add(btnDeleteRow);

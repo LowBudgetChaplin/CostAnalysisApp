@@ -121,5 +121,10 @@ namespace CostAnalysis.WinForms.Layouts
         {
             ExportToWord();
         }
+
+        private void dgvStats_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

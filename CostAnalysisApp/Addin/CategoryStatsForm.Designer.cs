@@ -48,6 +48,7 @@
             btnExportExcel = new Button();
             panelBottom = new Panel();
             ((System.ComponentModel.ISupportInitialize)dgvStats).BeginInit();
+            panelBottom.SuspendLayout();
             SuspendLayout();
             // 
             // dgvStats
@@ -57,46 +58,60 @@
             dgvStats.Location = new Point(0, 0);
             dgvStats.Name = "dgvStats";
             dgvStats.ReadOnly = true;
-            dgvStats.Size = new Size(443, 462);
+            dgvStats.Size = new Size(600, 360);
             dgvStats.TabIndex = 0;
-            //dgvStats.CellContentClick += dgvStats_CellContentClick;
-
-            panelBottom.Dock = DockStyle.Bottom;
-            panelBottom.Height = 50;
-            panelBottom.Controls.Add(btnExportExcel);
-            panelBottom.Controls.Add(btnExportWord);
-
             // 
             // btnExportWord
             // 
-            btnExportWord.Location = new Point(0, 414);
+            btnExportWord.BackColor = SystemColors.MenuHighlight;
+            btnExportWord.Dock = DockStyle.Left;
+            btnExportWord.FlatStyle = FlatStyle.Popup;
+            btnExportWord.ForeColor = Color.White;
+            btnExportWord.Location = new Point(10, 10);
+            btnExportWord.Margin = new Padding(10);
             btnExportWord.Name = "btnExportWord";
-            btnExportWord.Size = new Size(118, 48);
+            btnExportWord.Size = new Size(120, 40);
             btnExportWord.TabIndex = 1;
             btnExportWord.Text = "Export Word";
-            btnExportWord.UseVisualStyleBackColor = true;
-            //btnExportWord.Click += btnExportWord_Click_1;
-            btnExportExcel.Click += new EventHandler(btnExportExcel_Click);
+            btnExportWord.UseVisualStyleBackColor = false;
+            btnExportWord.Click += btnExportWord_Click;
             // 
             // btnExportExcel
             // 
-            btnExportExcel.Location = new Point(317, 414);
+            btnExportExcel.BackColor = SystemColors.MenuHighlight;
+            btnExportExcel.Dock = DockStyle.Left;
+            btnExportExcel.FlatStyle = FlatStyle.Popup;
+            btnExportExcel.ForeColor = Color.White;
+            btnExportExcel.Location = new Point(130, 10);
+            btnExportExcel.Margin = new Padding(10);
             btnExportExcel.Name = "btnExportExcel";
-            btnExportExcel.Size = new Size(126, 48);
-            btnExportExcel.TabIndex = 2;
+            btnExportExcel.Size = new Size(120, 40);
+            btnExportExcel.TabIndex = 0;
             btnExportExcel.Text = "Export Excel";
-            btnExportExcel.UseVisualStyleBackColor = true;
-            btnExportWord.Click += new EventHandler(btnExportWord_Click);
+            btnExportExcel.UseVisualStyleBackColor = false;
+            btnExportExcel.Click += btnExportExcel_Click;
+            // 
+            // panelBottom
+            // 
+            panelBottom.BackColor = SystemColors.Control;
+            panelBottom.Controls.Add(btnExportExcel);
+            panelBottom.Controls.Add(btnExportWord);
+            panelBottom.Dock = DockStyle.Bottom;
+            panelBottom.Location = new Point(0, 360);
+            panelBottom.Name = "panelBottom";
+            panelBottom.Padding = new Padding(10);
+            panelBottom.Size = new Size(600, 60);
+            panelBottom.TabIndex = 1;
             // 
             // CategoryStatsForm
             // 
-            ClientSize = new Size(443, 462);
-            Controls.Add(btnExportExcel);
-            Controls.Add(btnExportWord);
+            ClientSize = new Size(600, 420);
             Controls.Add(dgvStats);
+            Controls.Add(panelBottom);
             Name = "CategoryStatsForm";
-            Text = "Raport de cheltuieli pe categorii";
+            Text = "Statistici pe Categorii";
             ((System.ComponentModel.ISupportInitialize)dgvStats).EndInit();
+            panelBottom.ResumeLayout(false);
             ResumeLayout(false);
         }
     }

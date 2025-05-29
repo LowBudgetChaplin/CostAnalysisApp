@@ -28,26 +28,30 @@ namespace CostAnalysis.WinForms.Layouts
             // 
             // lstCategories
             // 
+            lstCategories.BackColor = Color.White;
             lstCategories.Dock = DockStyle.Top;
             lstCategories.ItemHeight = 15;
             lstCategories.Location = new Point(0, 0);
             lstCategories.Name = "lstCategories";
-            lstCategories.Size = new Size(300, 199);
+            lstCategories.Size = new Size(359, 199);
             lstCategories.TabIndex = 0;
             // 
             // btnDelete
             // 
+            btnDelete.BackColor = Color.Red;
             btnDelete.Dock = DockStyle.Bottom;
-            btnDelete.Location = new Point(0, 217);
+            btnDelete.ForeColor = Color.White;
+            btnDelete.Location = new Point(0, 225);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(300, 23);
+            btnDelete.Size = new Size(359, 57);
             btnDelete.TabIndex = 1;
             btnDelete.Text = "Sterge categorie selectata";
+            btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
             // CategoriesForm
             // 
-            ClientSize = new Size(300, 240);
+            ClientSize = new Size(359, 282);
             Controls.Add(lstCategories);
             Controls.Add(btnDelete);
             Name = "CategoriesForm";
